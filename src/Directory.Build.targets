@@ -1,0 +1,40 @@
+<Project>
+
+    <PropertyGroup>
+        <FrameworkVersion>8.0.0</FrameworkVersion>
+        <ExtensionsVersion>8.0.0</ExtensionsVersion>
+        <EntityFrameworkVersion>8.0.6</EntityFrameworkVersion>
+        <NelticVersion>4.1.2-*</NelticVersion>
+    </PropertyGroup>
+    
+    <ItemGroup Label="Microsoft">
+        <!--microsoft asp.net core -->
+        <PackageReference Update="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(FrameworkVersion)" />
+        <PackageReference Update="Microsoft.AspNetCore.Authorization" Version="$(FrameworkVersion)" />
+        <PackageReference Update="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+
+        <!--microsoft entity framework -->
+        <PackageReference Update="Microsoft.EntityFrameworkCore" Version="$(EntityFrameworkVersion)" />
+        <PackageReference Update="Microsoft.EntityFrameworkCore.DynamicLinq" Version="8.3.14" />
+    </ItemGroup>
+    
+    <ItemGroup Label="External">
+        <!--build related-->
+        <PackageReference Include="MinVer" Version="5.0.0" PrivateAssets="All" />        
+        
+        <!--our stuff -->
+        <PackageReference Update="MediatR" Version="12.2.0" />
+        <PackageReference Update="Scrutor" Version="4.2.2" />
+        <PackageReference Update="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
+        
+    </ItemGroup>
+
+    <Target Name="SetAssemblyVersion" AfterTargets="MinVer">
+        <PropertyGroup>
+            <AssemblyVersion>$(MinVerMajor).$(MinVerMinor).$(MinVerPatch).0</AssemblyVersion>
+        </PropertyGroup>
+    </Target>
+    
+</Project>
+
+

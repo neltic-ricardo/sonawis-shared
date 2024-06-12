@@ -1,0 +1,20 @@
+<Project>
+    <PropertyGroup>        
+        <RootNamespace>$(SolutionName).$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+        <AssemblyName>$(SolutionName).$(MSBuildProjectName.Replace(" ", "_"))</AssemblyName>
+        <Company>Sonawis Products</Company>
+        <Authors>Sonawis Products</Authors>
+        <Copyright>© Sonawis Products. All rights reserved.</Copyright>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryType>git</RepositoryType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+        <UseCommonOutputDirectory>false</UseCommonOutputDirectory>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+    </PropertyGroup>
+</Project>

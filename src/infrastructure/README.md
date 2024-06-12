@@ -1,0 +1,3 @@
+# README #
+
+Sonawis.Shared.Infrastructure

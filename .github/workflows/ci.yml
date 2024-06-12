@@ -1,0 +1,35 @@
+name: release
+
+on:  
+  workflow_dispatch:
+  push:
+    tags:
+      - '*.*.*'
+      
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  BUILD_CONFIG: "Release"
+  GITHUB_TOKEN: ${{ secrets.NELTIC_NUGET_TOKEN }}
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Get all history to allow automatic versioning using MinVer
+      - name: Setup .NET Core SDK # Install the .NET SDK indicated in the global.json file
+        uses: actions/setup-dotnet@v3
+      - name: Create Folders
+        run: mkdir {artifacts,packages}
+      - name: Restore Dependencies
+        run: dotnet restore --packages packages -v q
+      - name: Build Solution
+        run: dotnet build -c $BUILD_CONFIG -v q --nologo --no-restore -p:OutputPath=../../artifacts
+      - name: Push Nuget Package
+        run: dotnet nuget push artifacts/**/*.nupkg -k $GITHUB_TOKEN -s https://api.nuget.org/v3/index.json --skip-duplicate
